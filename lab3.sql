@@ -4,9 +4,8 @@ values ('s1@jmu.edu', 's1', 'IA'), ('s2@jmu.edu', 's2', 'IA'), ('s3@jmu.edu', 's
 
 --q2.2
 insert into public.professor(p_email,p_name,office)
-values ('pl@jmu.edu','p1','o1'),
-		('p2@jmu.edu','p2','o2'),
-		('p3@jmu.edu','p3','o3')
+values ('p1@jmu.edu','p1','o1'),
+		('p2@jmu.edu','p2','o2')
 
 --q2.3
 insert into course(c_number,c_name,room,p_email)
@@ -23,3 +22,19 @@ values
 ('s4@jmu.edu', 'c2'),
 ('s2@jmu.edu', 'c3'),
 ('s3@jmu.edu', 'c3')
+
+--q2.5
+--insert professor first, because its the primary one which makes us not allowed to do the parts in course.
+insert into public.professor(p_email,p_name,office)
+values ('p3@jmu.edu','p3','o3') ; 
+
+insert into course(c_number,c_name,room,p_email)
+values ('c4','facebook','r1','p3@jmu.edu')
+--q2.6
+--change course first, and then professor
+update course
+set p_email = 'p3@jmu.edu'
+where p_email = 'p1@jmu.edu'
+
+delete from professor 
+where p_email = 'p1@jmu.edu'
